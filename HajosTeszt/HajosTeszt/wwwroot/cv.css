@@ -1,7 +1,6 @@
-﻿
-
-html {
+﻿html {
     scroll-behavior: smooth;
+    background-color: #E4B7F6;
 }
 
 dt {
@@ -9,18 +8,40 @@ dt {
 }
 
 p::first-letter {
-    color: darkblue;
+    color: purple;
     font-size: 30px;
     font-style: italic;
     font-weight: bold;
 }
 
+caption {
+    color: purple;
+}
+
+table {
+    background-color: yellow;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+
+td {
+    padding: 10px;
+    color: purple;
+}
+
 #sajat {
     background-color: purple;
-    color: white;
+    color: yellow;
     border-radius: 25px;
     padding: 10px;
     margin: 10px;
+}
+
+.vas {
+    font-weight: bold;
+    line-height: 2em;
 }
 
 #study {
@@ -34,4 +55,19 @@ h1 {
     text-align: center;
     letter-spacing: 15px;
     border: 6px dashed purple;
+    color: yellow;
+}
+
+a:hover {
+    background-color: yellow;
+}
+
+a:link {
+    color: purple;
+    font-weight: bold;
+}
+
+img {
+    display: block;
+    margin: auto;
 }
