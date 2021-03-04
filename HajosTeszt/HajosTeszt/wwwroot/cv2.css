@@ -3,12 +3,12 @@
 }
 
 body {
-    font-weight: bold;
     text-align: center;
+    vertical-align:middle;
 }
 
 #article,
-#aside,
+#aside, #aside2,
 #footer,
 #header,
 #nav {
@@ -18,7 +18,8 @@ body {
 }
 
 #header {
-    background-color: tomato;
+    background-color: rebeccapurple;
+    color: yellow;
 }
 
 #nav {
@@ -26,30 +27,53 @@ body {
 }
 
 #article {
-    background-color: gold;
-    text-align: left;
+    background-color: yellow;
+    color: rebeccapurple;
+    text-align: justify;
+
 }
 
 #aside {
-    background-color: lightgreen;
+    
+    line-height: 2em;
+    text-align:left;
+    background-color: purple;
+    color: yellow;
+
+}
+#aside dd{
+    font-style:italic;
+}
+ #aside dt {
+        font-weight: bold;
+    }
+#aside2 {
+    background-color: purple;
+   
 }
 
 #footer {
-    background-color: hotpink;
+    background-color: rebeccapurple;
+    color:yellow;
 }
 
 #nav {
+    background-color: rebeccapurple;
+    
     display: flex;
 }
 
     #nav a {
         text-decoration: none;
-        color: black;
+        color: yellow;
         flex: 1 1 auto;
     }
-a:hover {
-    color: yellow;
-}
+
+        #nav a:hover {
+            font-size:20px;;
+            font-weight: bold;
+        }
+
 
 @media screen and (min-width: 800px) {
     body {
@@ -68,10 +92,15 @@ a:hover {
     }
 
     #article {
-        flex: 1 1 75%;
+        flex: 1 1 50%;
     }
 
     #aside {
+        flex: 1 1 25%;
+    }
+
+    #aside2 {
+        
         flex: 1 1 25%;
     }
 }
