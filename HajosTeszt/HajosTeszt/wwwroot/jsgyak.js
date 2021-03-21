@@ -1,24 +1,23 @@
-﻿var faktoriális = function (n) {
-    let er = 1;
-    for (let i = 2; i <= n; i++) {
-        er = er * i;
-    }
-    return er;
-}
+﻿window.onload = () => {
 
-for (var i = 0; i < 10; i++) {
-    console.log(`${i} : ${faktoriális(i)}`);
-}
+	let hova = document.getElementById("ide")
+	hova.innerHTML = "";
 
-function számítás() {
-    let n = document.getElementById("nTb").value;
-    let n2 = parseInt(n);
-    if (n2) {
-        let er = faktoriális(n);
-        document.getElementById("eredményDiv").innerText = er;
-    }
-    else {
-        document.getElementById("eredményDiv").innerText = "?";
-    }
-    
+	for (var s = 0; s < 1; s++) {
+
+		let sor = document.createElement("div");
+		hova.appendChild(sor);
+		sor.classList.add("egymásmellé");
+
+		for (var o = 0; o < 10; o++) {
+			let szám = document.createElement("div");
+			sor.appendChild(szám);
+			szám.innerText = (s + 1) * (o + 1);
+			szám.classList.add("doboz");
+			szám.style.color = "white";
+			szám.style.backgroundColor = `rgb(${0},0,${255 - o * 30})`;
+
+		}
+
+	}
 }
