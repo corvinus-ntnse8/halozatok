@@ -1,29 +1,25 @@
 ﻿window.onload = function () {
-
     document.getElementById("back").onclick = function Vissza() {
         kérdésSorszám--;
-        if (kérdésSorszám < 0) {
-            kérdésSorszám = kérdések.length - 1;
-        }
-        kérdésMegjelenítés(kérdésSorszám)
+        //if (kérdésSorszám < 0) {
+        //    kérdésSorszám = kérdések.length - 1;
+        //}
+        kérdésBetöltés(kérdésSorszám);
     }
-
     document.getElementById("next").onclick = function Előre() {
         kérdésSorszám++;
-        if (kérdésSorszám == kérdések.length - 1) {
-            kérdésSorszám = 0;
+        //if (kérdésSorszám == kérdések.length - 1) {
+        //    kérdésSorszám = 0;
 
-        }
-        kérdésMegjelenítés(kérdésSorszám);
-
+        //}
+        kérdésBetöltés(kérdésSorszám);
     }
-
-    letöltés();
-
+    kérdésBetöltés(kérdésSorszám);
 }
 
 var kérdések;
-var kérdésSorszám = 0;
+var kérdésSorszám = 1;
+var jóVálasz;
 
 function letöltés() {
     fetch('questions.json')
@@ -39,25 +35,24 @@ function letöltésBefejeződött(data) {
     kérdésMegjelenítés(0);
 }
 
-function kérdésMegjelenítés(kérdés)  {
-    let kérdés_szöveg = document.getElementById("kérdés_szöveg");
-    let kép = document.getElementById("kép1");
-    let válasz1 = document.getElementById("válasz1");
-    let válasz2 = document.getElementById("válasz2");
-    let válasz3 = document.getElementById("válasz3");
-
-    
-     console.log(kérdés);
-     document.getElementById("kérdés_szöveg").innerText = kérdés.questionText
-     document.getElementById("válasz1").innerText = kérdés.answer1
-     document.getElementById("válasz2").innerText = kérdés.answer2
-     document.getElementById("válasz3").innerText = kérdés.answer3
-     document.getElementById("kép").src = "https://szoft1.comeback.hu/hajo/" + kérdés.image;
-    
-
-    válasz1.classList.remove("jó", "rossz")
-    válasz2.classList.remove("jó", "rossz")
-    válasz3.classList.remove("jó", "rossz")
+function kérdésMegjelenítés(kérdésSorszám)  {
+    if (!kérdésSorszám) return;
+    console.log(kérdésSorszám); 
+    kérdés_szöveg.innerText = kérdésSorszám.questionText
+    válasz1.innerText = kérdésSorszám.answer1
+    válasz2.innerText = kérdésSorszám.answer2
+    válasz3.innerText = kérdésSorszám.answer3
+    jóVálasz = kérdésSorszám.correctAnswer;
+    if (kérdésSorszám.image) {
+        document.getElementById("kép").src = "https://szoft1.comeback.hu/hajo/" + kérdésSorszám.image;
+        document.getElementById("kép").classList.remove("rejtett")
+    }
+    else {
+        document.getElementById("kép").classList.add("rejtett")
+    } 
+    válasz1.classList.remove("jó", "rossz");
+    válasz2.classList.remove("jó", "rossz");
+    válasz3.classList.remove("jó", "rossz");
 }
 
 function kérdésBetöltés(id) {
@@ -74,7 +69,7 @@ function kérdésBetöltés(id) {
 }   
 
 válasz = function (n) {
-    if (kérdések[kérdésSorszám].correctAnswer == n) {
+    if (jóVálasz == n) {
         document.getElementById("válasz" + n).classList.add("jó");
     }
     else {
