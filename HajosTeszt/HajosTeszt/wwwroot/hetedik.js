@@ -1,32 +1,27 @@
 ﻿window.onload = function () {
+    fetch("questions/count").then(x => x.text()).then(x => { sz = parseInt(x) })
     document.getElementById("back").onclick = function Vissza() {
         kérdésSorszám--;
-        //if (kérdésSorszám < 0) {
-        //    kérdésSorszám = kérdések.length - 1;
-        //}
+        if (kérdésSorszám < 1) {
+            kérdésSorszám = sz;
+        }
         kérdésBetöltés(kérdésSorszám);
     }
     document.getElementById("next").onclick = function Előre() {
         kérdésSorszám++;
-        //if (kérdésSorszám == kérdések.length - 1) {
-        //    kérdésSorszám = 0;
+        if (kérdésSorszám == sz+1) {
+            kérdésSorszám = 1;
 
-        //}
+        }  
         kérdésBetöltés(kérdésSorszám);
-    }
+    }    
     kérdésBetöltés(kérdésSorszám);
 }
 
-var kérdések;
+
+var sz;
 var kérdésSorszám = 1;
 var jóVálasz;
-
-function letöltés() {
-    fetch('questions.json')
-        .then(response => response.json())
-        .then(data => letöltésBefejeződött(data)
-        );
-}
 
 function letöltésBefejeződött(data) {
     console.log("Sikeres letöltés")
@@ -60,12 +55,15 @@ function kérdésBetöltés(id) {
         .then(response => {
             if (!response.ok) {
                 console.error(`Hibás válasz: ${response.status}`)
+                return null;
             }
             else {
                 return response.json()
             }
         })
-        .then(data => kérdésMegjelenítés(data));
+        .then(data => {
+            if(data)kérdésMegjelenítés(data)
+        });
 }   
 
 válasz = function (n) {
