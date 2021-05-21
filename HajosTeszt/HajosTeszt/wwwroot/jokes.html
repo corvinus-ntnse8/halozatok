@@ -12,8 +12,28 @@
         </div>
         <button id="addButton">Új vicc felvétele</button>
     </form>
-
+    <div id="mindenvicc"></div>
     <script>
+        function ViccBetoltes() {
+            fetch('api/jokes')
+                .then(result => {
+                    if (!result.ok) {
+                        console.error(`Hibás letöltés: ${result.status}`);
+                        return null;
+                    }
+                    else {
+                        return result.json();
+                    }
+                })
+                .then(data => {
+                    for (var i = 0; i < data.length; i++) {
+                        document.getElementById("mindenvicc").innerHTML += data[i].jokeText += "<br>"
+                    }
+                })
+        }
+        window.onload = () => {
+            ViccBetoltes();
+        }
         document.getElementById("addButton").addEventListener("click", () => {
 
             //Ezt az objektumot fogjuk átküldeni
@@ -32,6 +52,7 @@
             ).then();
 
         });
+
     </script>
 </body>
 </html>
