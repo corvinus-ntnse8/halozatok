@@ -2,19 +2,46 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Országok</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="vilagokstilus.css" rel="stylesheet">
 </head>
 <body>
-    <form>
-        <div id="orszagLista"></div>
+    <div class="row">
         <div>
-            <input id="orszagNev" type="text" placeholder="Ide írja be az ország nevét!" />
+            <header>
+                <h1>A világ országai</h1>
+            </header>
         </div>
-        <input type="button" id="AddButton" name="felvetel" value="Hozzáadás" />
-    </form>
+    </div>
+    <div class="row">
+        <div class="col-6 col-t-12 ">
+        <form class="lista">
+                <p class="kozepre"><input id="orszagNev" size="20" type="text" class="szoveg" placeholder="Ide írja be az ország nevét!" /><br>
+                <input type="button" size="20" id="AddButton" class="kisgomb" name="felvetel" value="Felvétel" /> <hr></p>
+                <div id="orszagLista" class=" orszagok"></div>
+            
+        </form>
+        </div>
+            <div class="col-6 col-t-12">
+                <article class="lista">
+                    <h3>További információk</h3>
+                    <dl>
+                        <dt>1. feladat</dt>
+                        <dd>A világ országainak száma az alábbi oldalon keresztül lekérdezhető <a class="flink" href="https://corvinus-ntnse8.azurewebsites.net/api/countries/count">ide kattintva!</a> </dd>
+                        <dt>3. feladat</dt>
+                            <dd>Egy konkrét ország lekérdezése az ország ID-ján keresztül az alábbi oldalon keresztül érhető el, <a class="flink" href="https://corvinus-ntnse8.azurewebsites.net/api/countries/5">ide kattintva!</a>
+                        Az utolsó számot lecserélve lekérdezhető más ország is.</dd>
+                        <dt>4. feladat</dt>
+                        <dd>A törlés funkció RestMan-on keresztül kipróbálható, DELETE-re állítva, és URL-ként megadni a "https://corvinus-ntnse8.azurewebsites.net/api/countries/5" linket, ahol az utolsó szám az ország ID-ja, mely kijelöli, hogy melyik ország legyen törölve.</dd>
+                    </dl>
+                </article>
+             </div>
+    </div>
+
     <script>
         document.getElementById("AddButton").addEventListener("click", () => {
-            
+
             let data = {
                 orszag: document.getElementById("orszagNev").value
             }
@@ -30,6 +57,28 @@
             ).then();
 
         });
+
+
+        function OrszagBetoltes() {
+            fetch('api/countries')
+                .then(result => {
+                    if (!result.ok) {
+                        console.error(`Hibás letöltés: ${result.status}`);
+                        return null;
+                    }
+                    else {
+                        return result.json();
+                    }
+                })
+                .then(data => {
+                    for (var i = 0; i < data.length; i++) {
+                        document.getElementById("orszagLista").innerHTML += data[i].orszag += "<br>"
+                    }
+                })
+        }
+        window.onload = () => {
+            OrszagBetoltes();
+        }
     </script>
 </body>
 </html>

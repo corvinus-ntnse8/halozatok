@@ -55,8 +55,12 @@ namespace HajosTeszt.Controllers
             var törlendőOrszag = (from x in context.Countries
                                 where x.Id == id
                                 select x).FirstOrDefault();
-            context.Remove(törlendőOrszag);
-            context.SaveChanges();
+            if (törlendőOrszag != default)
+            {
+                context.Remove(törlendőOrszag);
+                context.SaveChanges();
+            }
+           
         }
 
         [HttpGet]
