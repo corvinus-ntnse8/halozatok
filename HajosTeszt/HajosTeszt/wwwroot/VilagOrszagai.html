@@ -19,8 +19,11 @@
         <form class="lista">
                 <p class="kozepre"><input id="orszagNev" size="20" type="text" class="szoveg" placeholder="Ide írja be az ország nevét!" /><br>
                 <input type="button" size="20" id="AddButton" class="kisgomb" name="felvetel" value="Felvétel" /> <hr></p>
-                <div id="orszagLista" class=" orszagok"></div>
-            
+                <p class="kozepre">
+                    <input type="number" class="szoveg" name="azonosit" id="azon" min="1" max="255" step="1" /><br>
+                    <input type="button" class="kisgomb" name="torlo" value="Törlés" onclick="torles()" /> <hr>
+                </p>      
+            <div id="orszagLista" class=" orszagok"></div>
         </form>
         </div>
             <div class="col-6 col-t-12">
@@ -58,6 +61,21 @@
 
         });
 
+        function torles() {
+            let orszID = document.getElementById("azon").value;
+
+            fetch(`api/countries/${orszID}`,
+                {
+                    method: 'DELETE',
+                }).then(x => {
+                    if (x.ok) {
+                        alert("Sikeresen törölte az országot a listáról!");
+                    }
+                    else {
+                        alert("A törlés sikertelen volt, lehet, hogy nem létező ID-t adott meg!")
+                    }
+                });
+        };
 
         function OrszagBetoltes() {
             fetch('api/countries')
