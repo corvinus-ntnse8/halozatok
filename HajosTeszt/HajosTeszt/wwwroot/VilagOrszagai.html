@@ -16,32 +16,42 @@
     </div>
     <div class="row">
         <div class="col-6 col-t-12 ">
-        <form class="lista">
-                <p class="kozepre"><input id="orszagNev" size="20" type="text" class="szoveg" placeholder="Ide írja be az ország nevét!" /><br>
-                <input type="button" size="20" id="AddButton" class="kisgomb" name="felvetel" value="Felvétel" /> <hr></p>
+            <form class="lista">
+                <p class="kozepre">
+                    <input id="orszagNev" size="20" type="text" class="szoveg" placeholder="Ide írja be az ország nevét!" /><br>
+                    <input type="button" size="20" id="AddButton" class="kisgomb" name="felvetel" value="Felvétel" /> <hr>
+                </p>
                 <p class="kozepre">
                     <input type="number" class="szoveg" name="azonosit" id="azon" min="1" max="255" step="1" placeholder="Ide írja be az ország azonosítóját!" /><br>
                     <input type="button" class="kisgomb" name="torlo" value="Törlés" onclick="torles()" /> <hr>
-                </p>      
-            <div id="orszagLista" class=" orszagok"></div>
-        </form>
+                </p>
+                <div id="orszagLista" class=" orszagok"></div>
+            </form>
         </div>
-            <div class="col-6 col-t-12">
-                <article class="lista">
-                    <h3>További információk</h3>
-                    <dl>
-                        <dt>1. feladat</dt>
-                        <dd>A világ országainak száma az alábbi oldalon keresztül lekérdezhető <a class="flink" href="https://corvinus-ntnse8.azurewebsites.net/api/countries/count">ide kattintva!</a> </dd>
-                        <dt>3. feladat</dt>
-                            <dd>Egy konkrét ország lekérdezése az ország ID-ján keresztül az alábbi oldalon keresztül érhető el, <a class="flink" href="https://corvinus-ntnse8.azurewebsites.net/api/countries/5">ide kattintva!</a>
-                        Az utolsó számot lecserélve lekérdezhető más ország is.</dd>
-                        <dt>4. feladat</dt>
-                        <dd>A törlés funkció RestMan-on keresztül kipróbálható, DELETE-re állítva, és URL-ként megadni a "https://corvinus-ntnse8.azurewebsites.net/api/countries/5" linket, ahol az utolsó szám az ország ID-ja, mely kijelöli, hogy melyik ország legyen törölve.</dd>
-                    </dl>
-                </article>
-             </div>
+        <div class="col-6 col-t-12">
+            <article class="lista">
+                <h3>További információk</h3>
+                <dl>
+                    <dt>Fontos!</dt>
+                    <dd>Miután hozzáadott/törölt egy országot (rákattintott a "Felvétel" vagy "Törlés" gombra), kérem, frissítse az oldalt, hogy lássa az újonnan keletkező listát! Az egyes országokat az azonosítójuk megadásával tudja törölni. Hogy melyik országhoz milyen ID tartozik, azt az <a class="flink" href="https://corvinus-ntnse8.azurewebsites.net/api/countries">alábbi linken</a> tudja megtekinteni.</dd>
+                    <dt>1. feladat</dt>
+                    <dd>A világ országainak száma az alábbi oldalon keresztül lekérdezhető <a class="flink" href="https://corvinus-ntnse8.azurewebsites.net/api/countries/count">ide kattintva!</a> </dd>
+                    <dt>3. feladat</dt>
+                    <dd>
+                        Egy konkrét ország lekérdezése az ország ID-ján keresztül az alábbi oldalon keresztül érhető el, <a class="flink" href="https://corvinus-ntnse8.azurewebsites.net/api/countries/5">ide kattintva!</a>
+                        Az utolsó számot lecserélve lekérdezhető más ország is.
+                    </dd>
+                    <dt>4. feladat</dt>
+                    <dd>A törlés funkció RestMan-on keresztül kipróbálható, DELETE-re állítva, és URL-ként megadni a "https://corvinus-ntnse8.azurewebsites.net/api/countries/5" linket, ahol az utolsó szám az ország ID-ja, mely kijelöli, hogy melyik ország legyen törölve.</dd>
+                </dl>
+            </article>
+        </div>
     </div>
-
+    <div class="row">
+        <div>
+            <footer>A weboldalt készítette: <br> Fabók Bíborka</footer>
+        </div>
+    </div>
     <script>
         document.getElementById("AddButton").addEventListener("click", () => {
 
@@ -98,5 +108,6 @@
             OrszagBetoltes();
         }
     </script>
+
 </body>
 </html>
